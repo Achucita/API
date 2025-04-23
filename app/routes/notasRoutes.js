@@ -14,5 +14,17 @@ router.get('/:id', async (ctx) => {
   ctx.body = `Obteniendo nota con ID ${id}`;
 });
 
+// Ruta para crear una nueva nota
+router.post('/', async (ctx) => {
+  const { titulo, contenido } = ctx.request.body;
+  ctx.body = {
+    mensaje: 'Nota creada exitosamente',
+    nota: {
+      titulo,
+      contenido,
+    },
+  };
+});
+
 // Exportar el router
 module.exports = router;

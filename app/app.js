@@ -1,5 +1,5 @@
-
 const Koa = require('koa');
+const bodyParser = require('koa-bodyparser');
 const dotenv = require('dotenv');
 const notasRoutes = require('./routes/notasRoutes');
 
@@ -8,6 +8,9 @@ dotenv.config();
 
 // Crear instancias de Koa
 const app = new Koa();
+
+// Agregar middleware para parsear el cuerpo de la solicitud
+app.use(bodyParser());
 
 // Usar las rutas de notas
 app.use(notasRoutes.routes());
