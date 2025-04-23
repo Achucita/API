@@ -1,4 +1,3 @@
--- Crear la tabla 'notas'
 CREATE TABLE IF NOT EXISTS notas (
   id INT AUTO_INCREMENT PRIMARY KEY,
   titulo VARCHAR(255) NOT NULL,
@@ -6,4 +5,3 @@ CREATE TABLE IF NOT EXISTS notas (
   fecha_creacion DATETIME NOT NULL,
   fecha_actualizacion DATETIME NOT NULL
 );
-

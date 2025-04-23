@@ -1,19 +1,17 @@
 const Koa = require('koa');
-const bodyParser = require('koa-bodyparser');
+const Router = require('koa-router');
 const dotenv = require('dotenv');
 const notasRoutes = require('./routes/notasRoutes');
 
 // Cargar variables de entorno
 dotenv.config();
 
-// Crear instancias de Koa
+// Crear instancias de Koa y Router
 const app = new Koa();
-
-// Agregar middleware para parsear el cuerpo de la solicitud
-app.use(bodyParser());
+const router = new Router();
 
 // Usar las rutas de notas
-app.use(notasRoutes.routes());
+router.use('/api/notas', notasRoutes.routes());
 
 // Middleware para manejar errores
 app.use(async (ctx, next) => {
@@ -24,6 +22,9 @@ app.use(async (ctx, next) => {
     ctx.body = { error: err.message };
   }
 });
+
+// Usar el router
+app.use(router.routes()).use(router.allowedMethods());
 
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;
