@@ -1,5 +1,5 @@
 const Router = require('koa-router');
-const {
+const { 
   getAllNotasHandler,
   getNotaByIdHandler,
   createNotaHandler,
@@ -25,4 +25,5 @@ router.put('/:id', updateNotaHandler);
 // Ruta para eliminar una nota
 router.delete('/:id', deleteNotaHandler);
 
-module.exports = router;
+// Exportar función que devuelve las rutas configuradas
+module.exports.routes = () => router.routes();
