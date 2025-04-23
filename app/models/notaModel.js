@@ -1,5 +1,46 @@
-
 const connection = require('../../config/db');
+
+// Obtener todas las notas
+const getAllNotas = () => {
+  return new Promise((resolve, reject) => {
+    connection.query('SELECT * FROM notas', (err, results) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(results);
+    });
+  });
+};
+
+// Obtener una nota por ID
+const getNotaById = (id) => {
+  return new Promise((resolve, reject) => {
+    connection.query('SELECT * FROM notas WHERE id = ?', [id], (err, results) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(results[0]);
+    });
+  });
+};
+
+// Crear una nueva nota
+const createNota = (titulo, contenido) => {
+  return new Promise((resolve, reject) => {
+    const fecha_creacion = new Date();
+    const fecha_actualizacion = new Date();
+    connection.query(
+      'INSERT INTO notas (titulo, contenido, fecha_creacion, fecha_actualizacion) VALUES (?, ?, ?, ?)',
+      [titulo, contenido, fecha_creacion, fecha_actualizacion],
+      (err, results) => {
+        if (err) {
+          return reject(err);
+        }
+        resolve(results.insertId); // Devuelve el ID de la nueva nota
+      }
+    );
+  });
+};
 
 // Actualizar una nota
 const updateNota = (id, titulo, contenido) => {
@@ -7,7 +48,7 @@ const updateNota = (id, titulo, contenido) => {
     const fecha_actualizacion = new Date();
     connection.query(
       'UPDATE notas SET titulo = ?, contenido = ?, fecha_actualizacion = ? WHERE id = ?',
-      [titulo, contenido, fecha_actualizacion, id],
+      [titulo, contenido, fecha_actualización, id],
       (err, results) => {
         if (err) {
           return reject(err);
@@ -17,12 +58,6 @@ const updateNota = (id, titulo, contenido) => {
     );
   });
 };
-
-module.exports = {
-  updateNota,
-};
-
-
 
 // Eliminar una nota
 const deleteNota = (id) => {
@@ -37,5 +72,9 @@ const deleteNota = (id) => {
 };
 
 module.exports = {
+  getAllNotas,
+  getNotaById,
+  createNota,
+  updateNota,
   deleteNota,
 };
