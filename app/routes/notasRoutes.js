@@ -1,4 +1,7 @@
 const Router = require('koa-router');
+const {
+  deleteNotaHandler,
+} = require('../controllers/notasController');
 
 // Crear una nueva instancia de Koa Router
 const router = new Router({ prefix: '/api/notas' });
@@ -25,6 +28,9 @@ router.post('/', async (ctx) => {
     },
   };
 });
+
+// Ruta para eliminar una nota
+router.delete('/:id', deleteNotaHandler);
 
 // Exportar el router
 module.exports = router;
