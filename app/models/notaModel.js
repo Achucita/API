@@ -23,7 +23,6 @@ module.exports = {
 };
 
 
-const connection = require('../../config/db');
 
 // Eliminar una nota
 const deleteNota = (id) => {

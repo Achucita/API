@@ -23,7 +23,6 @@ module.exports = {
 
 
 
-const { updateNota } = require('../models/notaModel');
 
 // Actualizar una nota
 const updateNotaHandler = async (ctx) => {
