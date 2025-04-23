@@ -6,4 +6,7 @@ CREATE TABLE IF NOT EXISTS notas (
   fecha_creacion DATETIME NOT NULL,
   fecha_actualizacion DATETIME NOT NULL
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> dbb60dce358a2498a93e9d9b5b87e6e32fbefbb2
